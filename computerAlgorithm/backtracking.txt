@@ -1,0 +1,22 @@
+int estimate() 
+{
+v = 상태공간트리의 루트 
+
+m = 1 각 수준의 유망 자식 노드의 개수 
+mprod = 1 각 수준의 m0 m1 ... mi-1 = g_max_size
+
+numnodes =1
+
+//m 이 0이 아닌 가정하에 계속 진행 
+while (m != 0)
+{
+	t = v의 자식노드의 개수 
+	mprod = mprod * m
+	numnodes += mprod * t
+	m = v의 유망한 자식노드의 개수 
+	if (m != 0) 
+	   v = 무작위로 선택한 v의 자식노드
+}
+
+return numnodes; 
+}
