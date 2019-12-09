@@ -1,4 +1,4 @@
-//1771105 Á¶¿¹Àº 
+//1771105 ì¡°ì˜ˆì€ 
 //nQueens.c
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -10,18 +10,18 @@
 typedef unsigned int(u32);
 typedef unsigned char(u8);
 
-u8 g_max_size;			// QueenÀÇ °³¼ö
-u32 g_total_num;		//Ã¹Â° ÁÙ¿¡ ³õÀ» ¼ö ÀÖ´Â Queen-NÀÇ °æ¿ìÀÇ ¼ö 1 Áõ°¡ 
+u8 g_max_size;			// Queenì˜ ê°œìˆ˜
+u32 g_total_num;		//ì²«ì§¸ ì¤„ì— ë†“ì„ ìˆ˜ ìˆëŠ” Queen-Nì˜ ê²½ìš°ì˜ ìˆ˜ 1 ì¦ê°€ 
 
-static __inline u8	IsComplete(u8 depth) // inline ÇÔ¼ö´Â ÀÚÁÖ È£ÃâµÉ¶§ À¯¿ë.¼Óµµ°¡ ´õ ºü¸£´Ù. ÇÔ¼öÀÇ ÄÚµå°¡ º¹Á¦µÇ´Â °Í.
+static __inline u8	IsComplete(u8 depth) // inline í•¨ìˆ˜ëŠ” ìì£¼ í˜¸ì¶œë ë•Œ ìœ ìš©.ì†ë„ê°€ ë” ë¹ ë¥´ë‹¤. í•¨ìˆ˜ì˜ ì½”ë“œê°€ ë³µì œë˜ëŠ” ê²ƒ.
 {
-	if (depth == (g_max_size - 1))	return 1;  	//leaf node±îÁö °Ë»çÇßÀ¸¸é 1°ª ¹İÈ¯
+	if (depth == (g_max_size - 1))	return 1;  	//leaf nodeê¹Œì§€ ê²€ì‚¬í–ˆìœ¼ë©´ 1ê°’ ë°˜í™˜
 
 	return 0;
 }
 
 static void FindNextTargets(u8 * arr, u8 depth, u8 * next_targets, u8 * num_of_next_targets){		
-	//FindNextTargets() : °°Àº ¿­, ´ë°¢¼± Ã£¾Æ¼­ À¯¸ÁÇÑ ³ëµå¿¡¼­ Á¦¿ÜÇÔ
+	//FindNextTargets() : ê°™ì€ ì—´, ëŒ€ê°ì„  ì°¾ì•„ì„œ ìœ ë§í•œ ë…¸ë“œì—ì„œ ì œì™¸í•¨
 	int i, j;
 	u8 valid_target_num = 0;
 
@@ -43,18 +43,18 @@ static void FindNextTargets(u8 * arr, u8 depth, u8 * next_targets, u8 * num_of_n
 				break;
 			}
 		}
-		if (valid_flag == 1) next_targets[valid_target_num++] = i;  //À¯¸ÁÇÑ ÀÚ½Ä ³ëµåµéÀÇ i°ªÀ» next_targets¹è¿­¿¡ ÀúÀå
+		if (valid_flag == 1) next_targets[valid_target_num++] = i;  //ìœ ë§í•œ ìì‹ ë…¸ë“œë“¤ì˜ iê°’ì„ next_targetsë°°ì—´ì— ì €ì¥
 	}
 	*num_of_next_targets = valid_target_num;
 }
 
 void	Backtracking(u8 * arr, u8 depth){	
-	//Backtracking(): ¹éÆ®·¢Å·
+	//Backtracking(): ë°±íŠ¸ë™í‚¹
 	int i;
 
 	// Check whether this combination is the solution or not.
 	if (IsComplete(depth))	{
-		g_total_num++;		//Ã¹Â° ÁÙ¿¡ ³õÀ» ¼ö ÀÖ´Â Queen-NÀÇ °æ¿ìÀÇ ¼ö 1 Áõ°¡ 
+		g_total_num++;		//ì²«ì§¸ ì¤„ì— ë†“ì„ ìˆ˜ ìˆëŠ” Queen-Nì˜ ê²½ìš°ì˜ ìˆ˜ 1 ì¦ê°€ 
 	}
 	else	{
 		u8 num_of_next_targets = 0;
@@ -69,7 +69,7 @@ void	Backtracking(u8 * arr, u8 depth){
 		// Check every feasible target.
 		for (i = 0; i < num_of_next_targets; i++)	{
 			arr[depth * g_max_size + next_targets[i]] = 1; 
-			// depth ±íÀÌ¿¡ ÀÖ´Â next_targets (À¯¸ÁÇÑ ÀÚ½Ä³ëµåµé)¿¡ ´ëÇØ ¹éÆ®·¢Å· ÁøÇà
+			// depth ê¹Šì´ì— ìˆëŠ” next_targets (ìœ ë§í•œ ìì‹ë…¸ë“œë“¤)ì— ëŒ€í•´ ë°±íŠ¸ë™í‚¹ ì§„í–‰
 			Backtracking(arr, depth);
 			arr[depth * g_max_size + next_targets[i]] = 0;
 		}
@@ -81,17 +81,17 @@ int main(void)	{
 	int i;
 	u8* arr_ptr;
 
-	scanf("%d", &g_max_size);	//·çÆ® ³ëµåÀÇ ÀÚ½ÄÀÇ °³¼ö
+	scanf("%d", &g_max_size);	//ë£¨íŠ¸ ë…¸ë“œì˜ ìì‹ì˜ ê°œìˆ˜
 
 	arr_ptr = (u8*)calloc(g_max_size * g_max_size, sizeof(u8));		
-	//heap ±¸Á¶·Î ¸Ş¸ğ¸® ÇÒ´ç; calloc »ç¿ëÇÏ¸é 0À¸·Î ÃÊ±âÈ­ 
+	//heap êµ¬ì¡°ë¡œ ë©”ëª¨ë¦¬ í• ë‹¹; calloc ì‚¬ìš©í•˜ë©´ 0ìœ¼ë¡œ ì´ˆê¸°í™” 
 	for (i = 0; i < g_max_size; i++)	{
-		arr_ptr[i] = 1;					// i¿­¿¡ ´ëÇØ ¹éÆ®·¢Å· ÁøÇà½ÃÀÛ
-		Backtracking(arr_ptr, 0);		// ¹éÆ®·¢Å· ·çÆ®³ëµåºÎÅÍ ÁøÇà
-		arr_ptr[i] = 0;					//  i¿­¿¡ ´ëÇØ ¹éÆ®·¡Å· ³¡
+		arr_ptr[i] = 1;					// iì—´ì— ëŒ€í•´ ë°±íŠ¸ë™í‚¹ ì§„í–‰ì‹œì‘
+		Backtracking(arr_ptr, 0);		// ë°±íŠ¸ë™í‚¹ ë£¨íŠ¸ë…¸ë“œë¶€í„° ì§„í–‰
+		arr_ptr[i] = 0;					//  iì—´ì— ëŒ€í•´ ë°±íŠ¸ë˜í‚¹ ë
 	}
 
-	printf("%d\n", g_total_num);			//Ã¹Â° ÁÙ¿¡ ³õÀ» ¼ö ÀÖ´Â Queen-NÀÇ °æ¿ìÀÇ ¼ö 1 Áõ°¡ 
+	printf("%d\n", g_total_num);			//ì²«ì§¸ ì¤„ì— ë†“ì„ ìˆ˜ ìˆëŠ” Queen-Nì˜ ê²½ìš°ì˜ ìˆ˜ 1 ì¦ê°€ 
 
 	free(arr_ptr);
 
