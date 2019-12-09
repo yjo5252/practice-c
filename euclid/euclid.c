@@ -6,7 +6,7 @@ const long long p = 1000000007;
 long factorial[4000005];
 long x_after, x_before, temp, q;
 
-void euclidean(long p, long B) {	 //B^(-1)mod p Àç±Í¹æÁ¤½Ä »ç¿ëÇÏ¿© (È®Àå À¯Å¬¸®µå È£Á¦¹ý)
+void euclidean(long p, long B) {	 //B^(-1)mod p ìž¬ê·€ë°©ì •ì‹ ì‚¬ìš©í•˜ì—¬ (í™•ìž¥ ìœ í´ë¦¬ë“œ í˜¸ì œë²•)
 	if (p % B > 0) {
 		euclidean(B, p % B);
 		temp = x_after;
@@ -26,7 +26,7 @@ int main() {
 	factorial[0] = 1;
 	factorial[1] = 1;
 	for (int i = 2; i <= N; i++)
-		factorial[i] = (factorial[i - 1] * i) % p;		//factorial°ª ÀüÃ³¸®
+		factorial[i] = (factorial[i - 1] * i) % p;		//factorialê°’ ì „ì²˜ë¦¬
 	long denominator = (factorial[K] * factorial[N - K]) % p;
 
 	euclidean(p, denominator);		// x_after = B^(-1) (mod p) = (K!(N-K)!) ^(-1) mod p
