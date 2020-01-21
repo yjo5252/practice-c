@@ -36,7 +36,7 @@ int main() {
 }
 int ascending(const void* a, const void* b) {
 	if (*(int*)a > * (int*)b)
-		return 1;a
+		return 1;
 	else if (*(int*)a < *(int*)b)
 		return -1;
 	else
