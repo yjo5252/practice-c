@@ -91,10 +91,7 @@ return ans;
 * 주어진 로직을 그대로 구현할 수 있는가
 * 재귀함수를 이해하고 작성할 수 있는가 
 ### 프로그래밍 
-* 얼마나 잘 구현해내는가의 문제
-* 괄호 set의 범위가 주어지면 거기서 u와 v의 경계 지점(i)를 구해준다. u의 맞고 안맞고를 확인해주기(result) 위해 correct 함수를 만든다. 
-* 만약 correct 함수에서 begin과 end 가 같을 때는 그냥 begin과 1을 반환해주었다. 
-* v의 범위가 s범위 밖으로 벗어나는 것을 방지한다. 
+* 재귀함수로 구현하면 복잡도가 O(n^2)인데 n=1000이라 문제 없다.
 ```c++
 if (x2 >= n || y2 >= n) s2 = "";
 ```
@@ -103,52 +100,40 @@ if (x2 >= n || y2 >= n) s2 = "";
 ``` C++
 #include <string>
 #include <vector>
-#include <stack>
-#define pill pair <int, int>
 using namespace std;
-
-string p;
-int n; 
-pii correct (int begin, int end) {
-     stack<int> s; 
-     int result = 1;
-     int o = 0, x = 0;
-     for (int i = begin; i <= end; i++){
-         if (p[i] ==')') {
-               o++; 
-               if (s.empty()) result = 0;
-               else s.pop();
-         }
-         else {
-               s.push(1); x++;
-         }
-         if (0 ==x) return pii(i, result);
-     }
-     return pii(begin,1);
+ 
+string solution(string p) {
+    if (p.size() == 0) return "";
+    int a = 0, b = 0;
+    for (int i = 0; i < p.size(); i += 2) {
+        if (p[i] == '(') a++;
+        else b++;
+        if (p[i + 1] == '(') a++;
+        else b++;
+        if (a == b) {
+            int cnt = 0;
+            bool bal = 1;
+            for (int j = 0; j < i + 2; ++j) {
+                if (p[j] == '(') cnt++;
+                else cnt--;
+                if (cnt < 0) bal = 0;
+            }
+            if (bal) {
+                return p.substr(0, i + 2) + solution(p.substr(i + 2, p.size() - i - 2));
+            }
+            else {
+                string ret = "(";
+                ret += solution(p.substr(i + 2, p.size() - i - 2));
+                ret += ')';
+                for (int j = 1; j < i + 1; ++j) {
+                    if (p[j] == '(') ret += ')';
+                    else ret += '(';
+                }
+                return ret;
+            }
+        }
+    }
 }
-
-string _solution(int begin, int end){
-      string result = "";
-      if(begin == end) return "";
-      pii r = correct(begin, end);
-      int x1 = begin, y1 = r.first, x2 = r.first+1, y2 = end;
-      string s2 = "";
-      if (x2 >= n || y2 >= n) s2) = "";
-      else s2 = _solution(x2, y2);
-      if (r.second) return p.substr(x1, y1-x1+1) +s2;
-      result = "(" + s2 + ")";
-      for (int i = x1 + 1; i <= y1-1; i++){
-         if (p[i] == '(') result += ")";
-         else result += "(";
-      }
-      return result;      
-}
-
-string solution (string _p){
-      p = _p, n = p.length();
-      return _solution(0,n-1);
-}
-
 
 ```
 
