@@ -22,6 +22,12 @@
   * 다르다면 그때는 same_n의 개수를 확인해서 이에 맞게 cnt를 업데이트 해준다. 
 * 그리고 모든 k의 cnt 중에서 제일 작은 값을 ans로 반환한다. 
 
+### 오류 
+입력값 〉	"ababcdcdababcdcd"
+기댓값 〉	9
+아래 코드 > 12 
+(오류)
+
 ### 코드 (C++)
 ```C++
 # include <string>
@@ -31,10 +37,10 @@ using namespace std;
 int solution(string s) {
   int n = s.length(), ans = n;
   for (int k = 1; k < n/2; k++){
-    int cnt = 0; i=0;
+    int cnt = 0, i=0;
     // 비교대상 i 
     while (i < n) {
-      int same_n = 0; next = 0; 
+      int same_n = 0, next = 0; 
       if (i + k > n) {
           cnt += n-i; break;
        }
@@ -61,6 +67,8 @@ int solution(string s) {
          if (next == 0) break;
          i = next;
        }
-       return ans;
+      if (cnt < ans) ans = cnt;
+  }
+return ans;
 }
 ```
