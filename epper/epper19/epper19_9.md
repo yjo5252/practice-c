@@ -16,7 +16,7 @@
 	1. 0,1,2,3 별도 계산
 	2. 4번째이상: ... 
 
-풀이법 #1
+### 풀이법 1
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -60,7 +60,7 @@ int main(void) {
 ```
 
 
-### 풀이법 1 
+### 풀이법 2
 ```c
 #include <stdio.h>
 
