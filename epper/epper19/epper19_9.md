@@ -105,7 +105,7 @@ int cal(int n){
 ```
 
 ### 유사문제 java로 풀이하기
-(백준 2156): 포도주 시식
+[(백준 2156): 포도주 시식](https://www.acmicpc.net/problem/2156)
 ```java
 import java.io.InputStreamReader;
 import java.io.StringBuffer;
