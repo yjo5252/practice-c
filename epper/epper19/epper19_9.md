@@ -104,13 +104,38 @@ int cal(int n){
 
 ```
 
-### 풀이법 #3 java
-```
+### 유사문제 java로 풀이하기
+(백준 2156): 포도주 시식
+```java
 import java.io.InputStreamReader;
 import java.io.StringBuffer;
 
-
-
-
-
+public class Q9{
+	public static void main(String[] args){
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.pareseInt(br.readLine());
+		int[] arr = new int[N];
+		int [] dp = new int[N];
+		for(int i=0; i < n; i++){
+			arr[i] = Integer.parseInt(br.readLine());
+		}
+		
+		if(N>=1){ // 첫잔일 경우
+			dp[0] = arr[0];
+		}
+		
+		if(N>=2){ // 두잔일 경우
+			dp[1] = arr[0]+arr[1]; 
+		}
+		
+		if(N>=3){ // 세잔일 경우
+			dp[2] = Math.max(dp[1], Math.max(dp[0]+arr[2], arr[1]+arr[2]));
+		}
+		
+		for(int i=3; i < N; i++){
+			dp[i] = Math.max(dp[i-1], Math.max(dp[i-2]+arr[i], dp[i-3]+arr[i-1]+arr[i]));
+		}
+		System.out.println(dp[N-1]);
+	}
+}
 ```
